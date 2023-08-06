@@ -6,15 +6,12 @@
         <title>WBS Creator</title>
         <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
         <link rel="stylesheet" href="stylesheet.css"/>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"
-            integrity="sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
     </head>
     <body>
-        <svg id="wbs-svg"></svg>
-        <script src="index.js"></script>
+        <main id="main">
+            <!-- <div id="wbs-container"></div> -->
+            <wbs-diagram model-data="model"/>
+        </main>
+        <script src="dist/index.js"></script>
     </body>
 </html>
