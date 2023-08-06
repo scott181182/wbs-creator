@@ -4,7 +4,11 @@
     "main": "index.js",
     "author": "Scott Fasone",
     "license": "MIT",
+    "scripts": {
+        "serve": "http-server -c-1"
+    },
     "devDependencies": {
-        "@types/d3": "^7.4.0"
+        "@types/d3": "^7.4.0",
+        "http-server": "^14.1.1"
     }
 }

@@ -7,8 +7,28 @@ html,body {
     overflow: hidden;
 }
 
+#wbs-svg-container {
+    width: 100%;
+    height: 100%;
+}
 
 #wbs-svg {
     width: 100%;
     height: 100%;
+}
+
+.wbs-node {
+    /* cursor: pointer; */
+}
+.wbs-node>text {
+    user-select: text;
+}
+.wbs-button {
+    cursor: pointer;
+
+    fill: white;
+    z-index: 10;
+}
+.wbs-button:hover {
+    fill: gray;
 }
