@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
-import { ReactFlow, Background, Controls } from "reactflow";
-
 import "reactflow/dist/style.css";
-import { wbs2graph } from "./layouts";
+
+import { WBSContext } from "./context";
+import { WBSFlow } from "./flow";
 import type { WBSNode } from "./types";
 
 
@@ -16,18 +15,15 @@ export type { WBSNode } from "./types";
 
 
 export interface WBSDiagramProps {
-    wbsNodes: WBSNode[];
+    initialValue: WBSNode[];
 }
 
 export function WBSDiagram({
-    wbsNodes
+    initialValue
 }: WBSDiagramProps) {
-    const { nodes, edges } = useMemo(() => wbs2graph(wbsNodes), [wbsNodes]);
-
     return <div className="w-full h-full">
-        <ReactFlow nodes={nodes} edges={edges}>
-            <Background/>
-            <Controls/>
-        </ReactFlow>
+        <WBSContext initialValue={initialValue}>
+            <WBSFlow/>
+        </WBSContext>
     </div>;
 }

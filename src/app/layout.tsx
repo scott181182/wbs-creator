@@ -28,6 +28,11 @@ export default function RootLayout({
                     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
                     crossOrigin="anonymous"
                 />
+                {/* Bootstrap Icons */}
+                <link
+                    rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+                />
             </head>
             <body className={inter.className}>
                 <main className="container">

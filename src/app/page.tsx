@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <section style={{ width: "800px", height: "600px", border: "1px solid black" }}>
             <WBSDiagram
-                wbsNodes={wbsNodes}
+                initialValue={wbsNodes}
             />
         </section>
     );

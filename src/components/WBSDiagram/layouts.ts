@@ -154,6 +154,7 @@ export function wbs2graph(wbsNodes: WBSNode[]): { nodes: Node<WBSNode>[], edges:
             return {
                 id: n.id,
                 data: n,
+                type: "task",
                 position: { x, y },
                 style: { width, height }
             };
@@ -167,3 +168,47 @@ export function wbs2graph(wbsNodes: WBSNode[]): { nodes: Node<WBSNode>[], edges:
         // edges: []
     };
 }
+
+/**
+ * Uses the `dagre` library to re-layout out an existing graph.
+ */
+export function relayoutGraph(nodes: Node<WBSNode>[], edges: Edge[]): { nodes: Node<WBSNode>[], edges: Edge[] } {
+    const g = new graphlib.Graph().setDefaultEdgeLabel(() => ({}));
+    g.setGraph({
+        rankdir: "TB",
+        nodesep: SIBLING_GAP,
+        ranksep: CHILD_GAP,
+    });
+
+    for(const node of nodes) {
+        g.setNode(node.id, {
+            ...node,
+            width: MIN_NODE_WIDTH,
+            height: MIN_NODE_HEIGHT
+        });
+    }
+    for(const edge of edges) {
+        g.setEdge(edge.source, edge.target);
+    }
+
+    dagreLayout(g);
+
+    return {
+        nodes: nodes.map((n) => {
+            const { x, y, width, height } = g.node(n.id);
+
+            return {
+                ...n,
+                position: { x, y },
+                style: { width, height }
+            };
+        }),
+        edges: g.edges().map((ge) => ({
+            source: ge.v,
+            target: ge.w,
+            id: `${ge.v}->${ge.w}`,
+            type: "smoothstep"
+        }))
+    };
+}
+
